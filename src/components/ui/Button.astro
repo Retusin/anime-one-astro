@@ -2,10 +2,13 @@
 export interface Props {
 	classButton?: string
 	title: string
+	link?: string
 }
 
 
-const {classButton, title} = Astro.props;
+const {classButton, title, link} = Astro.props;
 ---
 
-<button class={`bg-[#f9bc60] py-1 px-4 rounded-lg ${classButton} text-[#001e1d] font-semibold `}>{title}</button>
+<a href={link}>
+	<button class={`bg-[#f9bc60] rounded-lg ${classButton} text-[#001e1d] font-semibold `}>{title}</button>
+</a>
