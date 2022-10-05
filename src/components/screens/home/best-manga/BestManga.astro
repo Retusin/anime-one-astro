@@ -1,0 +1,17 @@
+---
+import Button from "@components/ui/Button.astro";
+import MangaCard from "@components/ui/card/MangaCard.astro";
+import type { MangaParams } from "src/types/manga.types";
+const response = await fetch('https://kitsu.io/api/edge/trending/manga')
+const trendingManga = await response.json()
+---
+
+ <section>
+       <div>
+           <h2 class="text-center text-3xl font-semibold text-[#001e1d] mb-16 mt-24">Best Manga</h2>
+              <ul class="grid grid-cols-2 gap-10">
+                {trendingManga.data.map((item: MangaParams) => <MangaCard item={item} />)}
+              </ul>
+			<Button title="Show All" classButton='mx-auto mt-12 mb-10 py-4 px-6 w-full max-w-[max-content] flex items-center' link='/manga' />
+  </div>
+    </section>
