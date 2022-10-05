@@ -1,0 +1,19 @@
+---
+import {Image} from '@astrojs/image/components'
+import type { AnimeParams } from 'src/types/anime.types';
+const response = await fetch('https://kitsu.io/api/edge/anime?page[limit]=7')
+const anime = await response.json()
+---
+
+ <section>
+  <div>
+  	<h2 class="text-center text-3xl font-semibold text-[#001e1d] mb-6">New Anime</h2>
+    <ul class="grid grid-cols-7 gap-5 mx-auto mb-12">
+      {anime.data.map((item: AnimeParams) => 
+        <li class="bg-[#004643] p-4 rounded-lg ">
+						<Image src={item.attributes.posterImage.medium} width={170} height={220} alt='banner' class='rounded-xl mb-4' />
+          	<h3 class="text-center font-semibold text-lg text-[#fffffe]">{item.attributes.titles.en_jp}</h3>
+        </li>)}
+     </ul>
+  </div>
+</section>

@@ -1,0 +1,8 @@
+---
+import {menu} from '../../../utils/data'
+import MenuItem from './menu-item/MenuItem.astro';
+---
+
+<ul class='text-[#abd1c6] flex gap-8'>
+	{menu.map(item => <MenuItem item={item} />)}
+</ul>

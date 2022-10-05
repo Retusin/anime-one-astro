@@ -1,0 +1,30 @@
+---
+import {AiFillStar} from 'react-icons/ai'
+import type { AnimeParams } from "src/types/anime.types";
+import {Image} from '@astrojs/image/components';
+const response = await fetch('https://kitsu.io/api/edge/trending/anime')
+const trendingAnime = await response.json()
+---
+
+<section>
+  <div>
+    <h2 class="text-center text-3xl font-semibold text-[#001e1d] mb-6">Best Anime</h2>
+      <ul class="grid grid-cols-2 gap-10">
+        {trendingAnime.data.map((item: AnimeParams) => 
+          <li class="bg-[#004643] rounded-xl">
+          	<div class="p-4 flex gap-10">
+							<Image src={item.attributes.posterImage.medium} width={170} height={250} alt="logo" class='rounded-xl' />
+							<div>
+								<h2 class='mb-2 text-2xl font-semibold'>{item.attributes.titles.en_jp}</h2>
+								<span class='text-[#e16162]'>{item.attributes.titles.ja_jp}</span>
+								<div class='mb-2 mt-2 flex items-center gap-3'>
+									<AiFillStar fill='#f9bc60' size={25} />
+									<span class="font-semibold">{item.attributes.averageRating}</span>	
+								</div>
+								<p class="line-clamp-4 mb-2 text-lg text-[#abd1c6]">{item.attributes.synopsis}</p>
+							</div>
+						</div>
+          </li>)}
+      </ul>
+  </div>
+</section>
