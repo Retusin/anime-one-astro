@@ -1,8 +1,10 @@
 ---
-import Layout from "../layouts/Layout.astro";
-
+import Layout from '../layouts/Layout.astro';
+import { AnimePage } from '@components/screens/AnimePage/AnimePage.tsx';
 ---
 
-<Layout title="Anime">
-	<section class="bg-[#abd1c6] rounded-xl shadow-xl p-4">Anime</section>
+<Layout title='Anime'>
+  <section class='bg-[#abd1c6] rounded-xl shadow-xl p-4'>
+    <AnimePage client:load />
+  </section>
 </Layout>
